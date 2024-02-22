@@ -227,25 +227,6 @@ __on_player_clicks_block(player, block, face) ->
     );
 );
 
-__on_player_breaks_block(player, block) ->
-(
-    debug = false;
-    block_name = str(block);
-    block_pos = pos(block);
-
-    debug && print(block_name);
-
-    [hardness, tools, drop_block_list, save_nbt, break_sound] = global_blocks:block_name || [9999, null, null, false, null];
-
-    valid_tool = __check_tool(debug, player, tools);
-    debug && print(valid_tool);
-
-    valid_tool && hardness != 9999 && (
-        __break_block(debug, player, block_pos, block_name);
-        return('cancel')
-    );
-);
-
 _break(debug, player, block_pos, block_name, step, lvl) ->
 (
     active_block = player~'active_block';
@@ -267,7 +248,24 @@ _break(debug, player, block_pos, block_name, step, lvl) ->
     );
 );
 
+__on_player_breaks_block(player, block) ->
+(
+    debug = false;
+    block_name = str(block);
+    block_pos = pos(block);
 
+    debug && print(block_name);
+
+    [hardness, tools, drop_block_list, save_nbt, break_sound] = global_blocks:block_name || [9999, null, null, false, null];
+
+    valid_tool = __check_tool(debug, player, tools);
+    debug && print(valid_tool);
+
+    valid_tool && hardness != 9999 && (
+        __break_block(debug, player, block_pos, block_name);
+        return('cancel')
+    );
+);
 
 // unbreak BlockEntityData for spawners (security risk on creative servers)
 // mojang intentionally disabled this for a reason, but we need it.
