@@ -18,10 +18,8 @@ debug = false;
 // sound to play when broken
 global_blocks = {
     'bedrock' -> [75, 'netherite_pickaxe', [null, null], false, 'stone' ],
-    'budding_amethyst' -> [1, ['diamond_pickaxe', 'netherite_pickaxe'], ['budding_amethyst', null], false, 'amethyst_block' ],
     'deepslate' -> [1.63, 'netherite_pickaxe', ['deepslate', 'cobbled_deepslate'], false, 'deepslate' ],
     'end_portal_frame' -> [25, ['diamond_pickaxe', 'netherite_pickaxe'], ['end_portal_frame', null], false, 'stone' ],
-    'spawner' -> [1, ['diamond_pickaxe', 'netherite_pickaxe'], ['spawner', null], true, 'metal' ],
 };
 
 global_tool_speeds = {
@@ -193,12 +191,28 @@ __break_block(debug, player, block_pos, block_name) -> (
 _adjacent_block_update(block_pos) ->
 (
     update(block_pos);
-    update(pos_offset(block_pos, 'x', 1));
-    update(pos_offset(block_pos, 'x', -1));
-    update(pos_offset(block_pos, 'y', 1));
-    update(pos_offset(block_pos, 'y', -1));
-    update(pos_offset(block_pos, 'z', 1));
-    update(pos_offset(block_pos, 'z', -1));
+    for(neighbours(block_pos),update(_))
+);
+
+_break(debug, player, block_pos, block_name, step, lvl) ->
+(
+    active_block = player~'active_block';
+    if (active_block != block_name || pos(active_block) != block_pos,
+        (
+            modify(player, 'breaking_progress', null);
+        ),
+        (
+            modify(player, 'breaking_progress', lvl);
+            if(lvl >= 10,
+                (
+                    __break_block(debug, player, block_pos, block_name);
+                ),
+                (
+                    schedule(step, '_break', debug, player, block_pos, block_name, step, lvl+1);
+                )
+            )
+        )
+    );
 );
 
 __on_player_clicks_block(player, block, face) ->
@@ -224,27 +238,6 @@ __on_player_clicks_block(player, block, face) ->
                 schedule(step, '_break', debug, player, block_pos, block_name, step, 1);
             )
         );
-    );
-);
-
-_break(debug, player, block_pos, block_name, step, lvl) ->
-(
-    active_block = player~'active_block';
-    if (active_block != block_name || pos(active_block) != block_pos,
-        (
-            modify(player, 'breaking_progress', null);
-        ),
-        (
-            modify(player, 'breaking_progress', lvl);
-            if(lvl >= 10,
-                (
-                    __break_block(debug, player, block_pos, block_name);
-                ),
-                (
-                    schedule(step, '_break', debug, player, block_pos, block_name, step, lvl+1);
-                )
-            )
-        )
     );
 );
 

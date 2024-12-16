@@ -48,6 +48,7 @@ __on_start() -> (
                     'loot_tables'->{
                         'blocks'->{
                             'budding_amethyst.json' -> silk_drop('budding_amethyst'),
+                            'end_portal_frame.json' -> silk_drop('end_portal_frame'),
                             'reinforced_deepslate.json' -> silk_drop('reinforced_deepslate'),
                             'spawner.json' -> silk_drop('spawner'),
                         }
