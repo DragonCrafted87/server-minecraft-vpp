@@ -45,7 +45,7 @@ global_bot_configs = {
         'mode' -> 'survival',
         'post_spawn' -> [
             'clear bot_raid',
-            'give bot_raid diamond_sword{Enchantments:[{id:sharpness,lvl:5},{id:sweeping,lvl:3},{id:looting,lvl:3}]}',
+            'give bot_raid diamond_sword{Enchantments:[{id:sharpness,lvl:5},{id:sweeping,lvl:3},{id:looting,lvl:3},{id:mending,lvl:1}]}',
             'item replace entity bot_raid armor.head with diamond_helmet{Enchantments:[{lvl:4,id:blast_protection},{lvl:4,id:fire_protection},{lvl:4,id:projectile_protection},{lvl:4,id:protection}]}',
             'item replace entity bot_raid armor.chest with diamond_chestplate{Enchantments:[{lvl:4,id:blast_protection},{lvl:4,id:fire_protection},{lvl:4,id:projectile_protection},{lvl:4,id:protection}]}',
             'item replace entity bot_raid armor.legs with diamond_leggings{Enchantments:[{lvl:4,id:blast_protection},{lvl:4,id:fire_protection},{lvl:4,id:projectile_protection},{lvl:4,id:protection}]}',
@@ -63,7 +63,7 @@ global_bot_configs = {
         'mode' -> 'survival',
         'post_spawn' -> [
             'clear bot_fortress',
-            'give bot_fortress diamond_sword{Enchantments:[{id:sharpness,lvl:5},{id:sweeping,lvl:3},{id:looting,lvl:3}]}',
+            'give bot_fortress diamond_sword{Enchantments:[{id:sharpness,lvl:5},{id:sweeping,lvl:3},{id:looting,lvl:3},{id:mending,lvl:1}]}',
             'item replace entity bot_fortress armor.head with diamond_helmet{Enchantments:[{lvl:4,id:blast_protection},{lvl:4,id:fire_protection},{lvl:4,id:projectile_protection},{lvl:4,id:protection}]}',
             'item replace entity bot_fortress armor.chest with diamond_chestplate{Enchantments:[{lvl:4,id:blast_protection},{lvl:4,id:fire_protection},{lvl:4,id:projectile_protection},{lvl:4,id:protection}]}',
             'item replace entity bot_fortress armor.legs with diamond_leggings{Enchantments:[{lvl:4,id:blast_protection},{lvl:4,id:fire_protection},{lvl:4,id:projectile_protection},{lvl:4,id:protection}]}',
